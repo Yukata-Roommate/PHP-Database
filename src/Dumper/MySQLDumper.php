@@ -149,26 +149,7 @@ class MySQLDumper extends BaseDumper implements MySQLDumperInterface
         $this->addDriverName();
         $this->addDatabase();
         $this->addOptions();
-    }
-
-    /**
-     * execute dump command
-     * 
-     * @return void
-     */
-    protected function executeCommand(): void
-    {
-        exec($this->commandString());
-    }
-
-    /**
-     * add driver name
-     * 
-     * @return void
-     */
-    protected function addDriverName(): void
-    {
-        $this->addCommand($this->driver());
+        $this->addDumpFile();
     }
 
     /*----------------------------------------*

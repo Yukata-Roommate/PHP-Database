@@ -46,13 +46,23 @@ abstract class BaseDumper implements BaseDumperInterface
     /**
      * dump database
      * 
-     * @return void
+     * @return bool
      */
-    public function dump(): void
+    public function dump(): bool
     {
         $this->setCommand();
 
-        $this->executeCommand();
+        return $this->executeCommand();
+    }
+
+    /**
+     * add driver name
+     * 
+     * @return void
+     */
+    protected function addDriverName(): void
+    {
+        $this->addCommand($this->driver());
     }
 
     /**
@@ -65,9 +75,42 @@ abstract class BaseDumper implements BaseDumperInterface
     /**
      * execute dump command
      * 
-     * @return void
+     * @return bool
      */
-    abstract protected function executeCommand(): void;
+    protected function executeCommand(): bool
+    {
+        $command = $this->commandString();
+
+        $command = $this->prepareExecuteCommand($command);
+
+        $output = exec($command);
+
+        $output = $this->passesExecuteCommand($output);
+
+        return $output !== null;
+    }
+
+    /**
+     * prepare execute command
+     * 
+     * @param string $command
+     * @return string
+     */
+    protected function prepareExecuteCommand(string $command): string
+    {
+        return $command;
+    }
+
+    /**
+     * passes execute command
+     * 
+     * @param string $output
+     * @return string
+     */
+    protected function passesExecuteCommand(string $output): string
+    {
+        return $output;
+    }
 
     /*----------------------------------------*
      * Dump Command

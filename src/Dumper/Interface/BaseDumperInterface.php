@@ -23,9 +23,9 @@ interface BaseDumperInterface
     /**
      * dump database
      * 
-     * @return void
+     * @return bool
      */
-    public function dump(): void;
+    public function dump(): bool;
 
     /*----------------------------------------*
      * Dump Command

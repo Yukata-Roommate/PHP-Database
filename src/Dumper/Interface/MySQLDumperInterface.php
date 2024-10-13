@@ -2,7 +2,7 @@
 
 namespace YukataRm\Database\Dumper\Interface;
 
-use YukataRm\Database\Dumper\BaseDumperInterface;
+use YukataRm\Database\Dumper\Interface\BaseDumperInterface;
 
 /**
  * MySQL Dumper Interface
