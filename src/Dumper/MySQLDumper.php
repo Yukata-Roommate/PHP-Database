@@ -121,7 +121,6 @@ use YukataRm\Text\Proxy\Text;
  * @method static orderByPrimary()
  * @method static sharedMemoryBaseName(string $name)
  * @method static singleTransaction()
- * 
  */
 class MySQLDumper extends BaseDumper implements MySQLDumperInterface
 {
