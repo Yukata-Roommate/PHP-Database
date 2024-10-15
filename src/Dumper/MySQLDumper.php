@@ -383,8 +383,10 @@ class MySQLDumper extends BaseDumper implements MySQLDumperInterface
     {
         return match (true) {
             is_null($value)  => null,
+            empty($value)    => null,
             is_array($value) => implode(",", $value),
-            default          => $value,
+
+            default => $value,
         };
     }
 
