@@ -252,13 +252,15 @@ class MySQLDumper extends BaseDumper implements MySQLDumperInterface
      */
     protected function addDatabase(): void
     {
-        if ($this->allDatabases) return $this->addAllDatabases();
+        if (!$this->allDatabases && empty($this->database())) throw new \RuntimeException("database name is required");
 
-        if (count($this->database()) === 1) return $this->addDatabaseName();
+        $count = count($this->database());
 
-        if (count($this->database()) > 1) return $this->addDatabaseNames();
-
-        throw new \RuntimeException("database name is required");
+        match (true) {
+            $this->allDatabases => $this->addAllDatabases(),
+            $count === 1        => $this->addDatabaseName(),
+            $count > 1          => $this->addDatabaseNames(),
+        };
     }
 
     /**

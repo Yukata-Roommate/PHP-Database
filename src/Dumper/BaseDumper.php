@@ -5,6 +5,7 @@ namespace YukataRm\Database\Dumper;
 use YukataRm\Database\Dumper\Interface\BaseDumperInterface;
 
 use YukataRm\Database\EnvLoader;
+use YukataRm\File\Proxy\Operator;
 
 /**
  * Base Dumper
@@ -51,6 +52,8 @@ abstract class BaseDumper implements BaseDumperInterface
     public function dump(): bool
     {
         $this->setCommand();
+
+        $this->createDumpFile();
 
         return $this->executeCommand();
     }
@@ -196,4 +199,18 @@ abstract class BaseDumper implements BaseDumperInterface
      * @return void
      */
     abstract protected function addDumpFile(): void;
+
+    /**
+     * create dump file
+     * 
+     * @return void
+     */
+    protected function createDumpFile(): void
+    {
+        $operator = Operator::makeFrom($this->dumpFile);
+
+        if ($operator->isExists()) return;
+
+        $operator->create();
+    }
 }
