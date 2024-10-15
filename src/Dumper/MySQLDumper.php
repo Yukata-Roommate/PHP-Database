@@ -189,9 +189,10 @@ class MySQLDumper extends BaseDumper implements MySQLDumperInterface
     /**
      * set all databases
      * 
+     * @param bool $allDatabases
      * @return static
      */
-    public function setAllDatabases(): static
+    public function setAllDatabases(bool $allDatabases = true): static
     {
         $this->allDatabases = true;
 

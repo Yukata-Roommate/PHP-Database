@@ -135,9 +135,10 @@ interface MySQLDumperInterface extends BaseDumperInterface
     /**
      * set all databases
      * 
+     * @param bool $allDatabases
      * @return static
      */
-    public function setAllDatabases(): static;
+    public function setAllDatabases(bool $allDatabases = true): static;
 
     /**
      * get database name

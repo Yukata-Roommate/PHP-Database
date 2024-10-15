@@ -52,4 +52,23 @@ interface BaseDumperInterface
      * @return static
      */
     public function addCommand(string $command): static;
+
+    /*----------------------------------------*
+     * Dump File
+     *----------------------------------------*/
+
+    /**
+     * get dump file path
+     * 
+     * @return string
+     */
+    public function dumpFile(): string;
+
+    /**
+     * set dump file path
+     * 
+     * @param string $dumpFile
+     * @return static
+     */
+    public function setDumpFile(string $dumpFile): static;
 }
